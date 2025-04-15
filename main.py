@@ -38,3 +38,15 @@ def create_order(order: schemas.OrderCreate, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(db_order)
     return db_order
+
+@app.get("/clients/")
+def get_clients(db: Session = Depends(get_db)):
+    return db.query(models.Client).all()
+
+@app.get("/products/")
+def get_products(db: Session = Depends(get_db)):
+    return db.query(models.Product).all()
+
+@app.get("/orders/")
+def get_orders(db: Session = Depends(get_db)):
+    return db.query(models.Order).all()
